@@ -26,13 +26,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
             }
         });
-//        findViewById(R.id.signupbtn).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // Code to navigate to signup activity
-//                startActivity(new Intent(MainActivity.this, RegisterActivity.class));
-//            }
-//        });
+        findViewById(R.id.signupbtn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Code to navigate to signup activity
+                startActivity(new Intent(MainActivity.this, RegisterActivity.class));
+            }
+        });
+
 //        Toast.makeText(this, "welcome to FlatMingle",Toast.LENGTH_LONG).show();
 //        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
 //            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());

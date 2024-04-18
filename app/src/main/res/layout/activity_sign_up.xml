@@ -37,14 +37,13 @@
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="20dp"
                 android:text="Sign up"
                 android:textColor="#603a91"
                 android:textSize="40sp"
-                android:textStyle="bold"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="100dp"
-                android:layout_marginBottom="20dp"
-                />
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/editTextText"
@@ -135,14 +134,15 @@
                     android:textColor="#603a91"
                     android:textSize="18dp"
                     android:buttonTint="#603a91"/>
+
             </RadioGroup>
 
             <ImageView
                 android:id="@+id/imageView5"
-                android:layout_gravity="end"
-                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="10dp"
                 app:srcCompat="@drawable/btn_login" />
 
             <TextView
