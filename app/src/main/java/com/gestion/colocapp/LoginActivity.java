@@ -40,6 +40,13 @@ public class LoginActivity extends AppCompatActivity {
                 login();
             }
         });
+        findViewById(R.id.textView5).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start the LoginActivity when the login button is clicked
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+            }
+        });
     }
 
     private void login() {

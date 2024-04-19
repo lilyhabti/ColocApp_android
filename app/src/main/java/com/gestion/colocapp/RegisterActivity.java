@@ -45,6 +45,13 @@ public class RegisterActivity extends AppCompatActivity {
                 register();
             }
         });
+        findViewById(R.id.textView5).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start the LoginActivity when the login button is clicked
+                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+            }
+        });
     }
 
     private void register() {
