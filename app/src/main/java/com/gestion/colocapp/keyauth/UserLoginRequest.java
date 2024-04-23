@@ -1,11 +1,17 @@
 package com.gestion.colocapp.keyauth;
 
-public class UserLoginRequest {
+import com.google.gson.annotations.SerializedName;
 
+public class UserLoginRequest {
+    @SerializedName("username")
     private String username;
+    @SerializedName("password")
     private String password;
+    @SerializedName("grant_type")
     private String grant_type;
+    @SerializedName("client_id")
     private String client_id;
+    @SerializedName("client_secret")
     private String client_secret;
 
     // Constructor, getters, and setters

@@ -2,6 +2,7 @@ package com.gestion.colocapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -67,14 +68,17 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         String role = rbSharedLiving.isChecked() ? "DEMANDEUR" : "PROPRIETAIRE";
+
+        String contentType = "application/json";
         UserRegisterRequest userRegisterRequest = new UserRegisterRequest(username,email,password,role);
 
         // Proceed with registration
         // Call your registration API endpoint here
-        RetrofitClient.getUserServiceForRegister().registerUser(userRegisterRequest)
+        RetrofitClient.getUserServiceForRegister().registerUser(contentType,userRegisterRequest)
                 .enqueue(new Callback<RegistrationResponse>() {
                     @Override
                     public void onResponse(Call<RegistrationResponse> call, Response<RegistrationResponse> response) {
+
                         if (response.isSuccessful()) {
                             // Registration successful
                             Toast.makeText(RegisterActivity.this, "Registration successful", Toast.LENGTH_SHORT).show();
@@ -85,6 +89,7 @@ public class RegisterActivity extends AppCompatActivity {
                             finish(); // Close the current activity to prevent going back
                         } else {
                             // Registration failed
+                            Log.e("RegisterActivity", "register request failed"+ response.code());
                             Toast.makeText(RegisterActivity.this, "Registration failed", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -92,6 +97,7 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(Call<RegistrationResponse> call, Throwable t) {
                         // Network error
+                        Log.e("RegisterActivity", "register request failed", t);
                         Toast.makeText(RegisterActivity.this, "Network error. Please try again.", Toast.LENGTH_SHORT).show();
                     }
                 });

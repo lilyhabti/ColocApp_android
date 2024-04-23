@@ -1,10 +1,16 @@
 package com.gestion.colocapp.keyauth;
 
+import com.google.gson.annotations.SerializedName;
+
 public class UserRegisterRequest {
 
+    @SerializedName("userName")
     private String username;
+    @SerializedName("emailId")
     private String email;
+    @SerializedName("password")
     private String password;
+    @SerializedName("roleName")
     private String role; // Will be set based on user selection
 
     // Constructor, getters, and setters

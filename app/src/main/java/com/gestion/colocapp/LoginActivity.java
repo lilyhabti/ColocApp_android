@@ -2,6 +2,7 @@ package com.gestion.colocapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -15,9 +16,13 @@ import com.gestion.colocapp.keyauth.UserResponse;
 import com.gestion.colocapp.keyauth.UserLoginRequest;
 import com.gestion.colocapp.keyauth.UserService;
 
+import java.io.IOException;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import okhttp3.Request;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -53,11 +58,12 @@ public class LoginActivity extends AppCompatActivity {
         String username = etUsername.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
 
+        String contentType = "application/x-www-form-urlencoded";
         UserLoginRequest userLoginRequest = new UserLoginRequest(username,password,"password","coloc-app-client","Y3Og7npiX8tUKh5F2O08GKmy9tVuj5rX");
 
         // Call the login API endpoint
         UserService userService = RetrofitClient.getUserServiceForLogin();
-        Call<UserResponse> call = userService.login(userLoginRequest);
+        Call<UserResponse> call = userService.login(contentType,userLoginRequest);
         call.enqueue(new Callback<UserResponse>() {
             @Override
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
@@ -74,10 +80,13 @@ public class LoginActivity extends AppCompatActivity {
                         finish(); // Close the current activity to prevent going back
                     } else {
                         // Response body is empty or null
+
                         Toast.makeText(LoginActivity.this, "Login failed: Empty response body", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    // Login failed
+                    Log.e("LoginActivity", "Login request failed: " + response.message());
+                    Log.d("LoginActivity", "Request headers: " + call.request().headers());
+                    Log.d("LoginActivity", "Request body: " + call.request().body().toString());
                     Toast.makeText(LoginActivity.this, "Login failed: " + response.message(), Toast.LENGTH_SHORT).show();
                 }
             }
@@ -85,6 +94,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<UserResponse> call, Throwable t) {
                 // Login request failed
+                Log.e("LoginActivity", "Login request failed", t);
                 Toast.makeText(LoginActivity.this, "Login request failed: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
