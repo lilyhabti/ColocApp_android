@@ -94,14 +94,13 @@ public class CreateFlatShareActivity extends AppCompatActivity {
             // Convertir l'image en String avec Base64
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImageUri);
-                String encodedImage = encodeImage(bitmap);
+                base64Image = encodeImage(bitmap); // Stocker l'image encodée en base64 dans base64Image
                 Toast.makeText(this, "Image enregistrée avec succès en tant que String Base64", Toast.LENGTH_SHORT).show();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
-
     private String encodeImage(Bitmap bitmap) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);

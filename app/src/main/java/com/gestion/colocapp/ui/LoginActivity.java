@@ -107,7 +107,9 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             } else {
                 // Rediriger vers dash_pro
-                startActivity(new Intent(LoginActivity.this, DashProActivity.class));
+                Intent intent = new Intent(LoginActivity.this, DashProActivity.class);
+                intent.putExtra("user", user);
+                startActivity(intent);
             }
         } else if (user.getRole().equals("DEMANDEUR")) {
             if (isFirstLogin) {
